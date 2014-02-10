@@ -19,7 +19,7 @@ module AjaxfulRating # :nodoc:
     #   end
     def ajaxful_rateable(options = {})
       options[:class_name] ||= 'Rate'
-      has_many :rates_without_dimension, :as => :rateable, :class_name => options[:class_name], :dependent => :destroy, -> { where dimension: nil }
+      has_many :rates_without_dimension, :as => :rateable, -> { where dimension: nil }, :class_name => options[:class_name], :dependent => :destroy
       has_many :raters_without_dimension, :through => :rates_without_dimension, :source => :rater
 
       class << self
